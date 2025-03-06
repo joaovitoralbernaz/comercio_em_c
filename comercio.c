@@ -1,10 +1,15 @@
 #include <stdio.h>
 
+void menu_financeiro(){
+    char escolha_2;
+}
+
 void menu_principal(){
+    char escolha_2;
     char escolha;
     char sair;
     char estoque;
-    printf("Digite 'E' para estoque,\n 'V' para venda, \n 'F' para finaceiro,\n 'S' para sair: ");
+    printf("Digite 'E' para estoque, 'V' para venda,  'F' para finaceiro, 'S' para sair: ");
     scanf("%c" , &escolha);
     
     
@@ -28,6 +33,9 @@ void menu_principal(){
         printf("--------------------------------------------------------------------------------------------------- \n");
         printf("Controle financeiro \n");
         printf("     *Opções: \n \n");
+        /*tem que arrumar isso aqui em baixo */
+        printf("Selecione as opcoẽs:\n ");
+        scanf(" %c" , &escolha_2);
         printf("201 - Registrar Despesas \n");
         printf("202 - Registrar Receitas \n");
         printf("203 - Consultar Saldo \n \n");
