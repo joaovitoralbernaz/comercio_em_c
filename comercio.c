@@ -1,13 +1,13 @@
 #include <stdio.h>
 
-int main(){
+void menu_principal(){
     char escolha;
     char sair;
     char estoque;
-    printf("Digite E para estoque, V para vendas, F para controle finaceiro e digite S para sair: ");
+    printf("Digite 'E' para estoque,\n 'V' para venda, \n 'F' para finaceiro,\n 'S' para sair: ");
     scanf("%c" , &escolha);
-     
-     
+    
+    
     switch( escolha ){
         case 'E':
         printf("--------------------------------------------------------------------------------------------------- \n");
@@ -58,6 +58,11 @@ int main(){
         printf("Opção Inválida \n");
         break;
     }
+    
+}
 
+
+int main(){
+    menu_principal();
     return 0;
 }
