@@ -1,26 +1,48 @@
 #include <stdio.h>
-
-void registrardespesas(){
-
-}
-
-void registrarreceita(){
-    int valor;
-    printf("Registrar valor: ");
-    scanf("%d" , &valor);
-    consultarsaldo(valor);
-}
-
-void consultarsaldo(int saldo){
-    printf("%d" , saldo)
-}
-
-void menu_principal(){
+void financeiro(){
+    int menu_principal();
+    int r;
+    int d;
+    int s;
     int escolha_2;
+    printf("--------------------------------------------------------------------------------------------------- \n");
+        printf("Controle financeiro \n");
+        printf("     *Opções: \n \n");
+        printf("201 - Registrar Despesas \n");
+        printf("202 - Registrar Receitas \n");
+        printf("203 - Consultar Saldo \n");
+        printf("204 - Voltar ao menu principal?\n\n");
+        
+        printf("Selecione as opcoẽs:\n ");
+        scanf("%d" , &escolha_2);
+        
+        switch(escolha_2){
+             case 201:
+             printf("Digite o valor da despesa R$: ");
+             scanf("%d" , &d);
+             
+             case 202:
+             printf("Digite o valor da receita R$: ");
+             scanf("%d" , &r);
+             
+             case 203:
+             s = r - d;
+             printf("Saldo é igual a R$: %d " , s);
+             
+             case 204:
+             menu_principal();
+             
+             default:
+             financeiro();
+        }
+            
+}
+int menu_principal(){
+
     int escolha;
-    char sair;
+    int sair;
     int estoque;
-    printf("Menu principal: \n 1. Controle estoque \n 2. Controle finaceiro \n 3. Controle vendas \n 4. Sair \n ");
+    printf("Menu: \n\n 1. Controle estoque \n 2. Controle finaceiro \n 3. Controle vendas \n 4. Sair \n\n Selecione: ");
     scanf("%d" , &escolha);
     
     
@@ -33,6 +55,7 @@ void menu_principal(){
         printf("   102 - Produto B -- 23 unidades; \n");
         printf("   103 - Produto C -- 31 unidades: \n \n");
         printf("Voltar ao menu principal? \n");
+        printf("Digite s para voltar e n para ficar. ");
         scanf(" %c" , &sair);
         if( sair == 's'){
             menu_principal();
@@ -42,30 +65,42 @@ void menu_principal(){
         }
         
         case 2:
-        printf("--------------------------------------------------------------------------------------------------- \n");
+        financeiro();
+       /* printf("--------------------------------------------------------------------------------------------------- \n");
         printf("Controle financeiro \n");
         printf("     *Opções: \n \n");
         printf("201 - Registrar Despesas \n");
         printf("202 - Registrar Receitas \n");
-        printf("203 - Consultar Saldo \n \n");
+        printf("203 - Consultar Saldo \n");
+        printf("204 - Voltar ao menu principal?\n\n");
+        
         printf("Selecione as opcoẽs:\n ");
         scanf("%d" , &escolha_2);
         
-        if( escolha_2 == 201){
-            registrardespesas();
+        switch(escolha_2){
+             case 201:
+             printf("Digite o valor da despesa R$: ");
+             scanf("%d" , &valor);
+             
+             case 202:
+             printf("Digite o valor da receita R$: ");
+             scanf("%d" , &receita);
+        }
+        
+        /*if( escolha_2 == 201){
+            printf("Digite o Valor R$: ");
+            scanf("%d" , &valor );
         }else if( escolha_2 == 202){
             registrarreceita();
         }else if ( escolha_2 == 203){
+            pagamento();
+        }else if ( escolha_2 == 204){
             consultarsaldo();
-        }
-        printf("Voltar ao menu principal? \n");
-        scanf(" %c" , &sair);
-        if( sair == 's'){
-            menu_principal();
         }else{
             printf("Programa encerrado!");
             break;
-        }
+        }*/
+        
         
         case 3 :
         printf("--------------------------------------------------------------------------------------------------- \n");
@@ -82,15 +117,10 @@ void menu_principal(){
             printf("Programa encerrado!");
             break;
         }
-        
-      
        case 4 :
         printf("--------------------------------------------------------------------------------------------------- \n");
         printf("Programa encerrado!");
         break;
-        
-         
-       
         default:
         printf("--------------------------------------------------------------------------------------------------- \n");
         printf("Opção Inválida \n");
