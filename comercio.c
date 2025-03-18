@@ -1,8 +1,7 @@
 #include <stdio.h>
-void financeiro(){
+
+void financeiro(int rec,int des){
     int menu_principal();
-    int r;
-    int d;
     int s;
     int escolha_2;
     printf("--------------------------------------------------------------------------------------------------- \n");
@@ -19,26 +18,26 @@ void financeiro(){
         switch(escolha_2){
              case 201:
              printf("Digite o valor da despesa R$: ");
-             scanf("%d" , &d);
-             
+             scanf("%d" , &des);
+             financeiro(rec,des);
              case 202:
              printf("Digite o valor da receita R$: ");
-             scanf("%d" , &r);
-             
+             scanf("%d" , &rec);
+             financeiro(rec,des);
              case 203:
-             s = r - d;
+             s = rec - des;
              printf("Saldo é igual a R$: %d " , s);
-             
+             financeiro(rec,des);
              case 204:
              menu_principal();
-             
              default:
-             financeiro();
+             financeiro(rec,des);
         }
             
 }
 int menu_principal(){
-
+    int rec;
+    int des;
     int escolha;
     int sair;
     int estoque;
@@ -65,43 +64,8 @@ int menu_principal(){
         }
         
         case 2:
-        financeiro();
-       /* printf("--------------------------------------------------------------------------------------------------- \n");
-        printf("Controle financeiro \n");
-        printf("     *Opções: \n \n");
-        printf("201 - Registrar Despesas \n");
-        printf("202 - Registrar Receitas \n");
-        printf("203 - Consultar Saldo \n");
-        printf("204 - Voltar ao menu principal?\n\n");
-        
-        printf("Selecione as opcoẽs:\n ");
-        scanf("%d" , &escolha_2);
-        
-        switch(escolha_2){
-             case 201:
-             printf("Digite o valor da despesa R$: ");
-             scanf("%d" , &valor);
-             
-             case 202:
-             printf("Digite o valor da receita R$: ");
-             scanf("%d" , &receita);
-        }
-        
-        /*if( escolha_2 == 201){
-            printf("Digite o Valor R$: ");
-            scanf("%d" , &valor );
-        }else if( escolha_2 == 202){
-            registrarreceita();
-        }else if ( escolha_2 == 203){
-            pagamento();
-        }else if ( escolha_2 == 204){
-            consultarsaldo();
-        }else{
-            printf("Programa encerrado!");
-            break;
-        }*/
-        
-        
+        financeiro(rec,des);
+
         case 3 :
         printf("--------------------------------------------------------------------------------------------------- \n");
         printf("Vendas \n");
@@ -132,5 +96,8 @@ int menu_principal(){
 
 int main(){
     menu_principal();
+    int rec;
+    int des;
+    financeiro(rec,des);
     return 0;
 }
