@@ -1,5 +1,6 @@
 #include <stdio.h>
-
+int rec;
+int des;
 void financeiro(int rec,int des){
     int menu_principal();
     int s;
@@ -36,8 +37,6 @@ void financeiro(int rec,int des){
             
 }
 int menu_principal(){
-    int rec;
-    int des;
     int escolha;
     int sair;
     int estoque;
@@ -96,8 +95,6 @@ int menu_principal(){
 
 int main(){
     menu_principal();
-    int rec;
-    int des;
     financeiro(rec,des);
     return 0;
 }
