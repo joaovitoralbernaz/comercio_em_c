@@ -1,11 +1,12 @@
 #include <stdio.h>
-int rec;
-int des;
+int menu_principal();
+void financeiro(int rec,int des);
+
 void financeiro(int rec,int des){
-    int menu_principal();
+    
     int s;
     int escolha_2;
-    printf("--------------------------------------------------------------------------------------------------- \n");
+    printf("\n------------------------------------------------------------------------------ \n");
         printf("Controle financeiro \n");
         printf("     *Opções: \n \n");
         printf("201 - Registrar Despesas \n");
@@ -21,32 +22,40 @@ void financeiro(int rec,int des){
              printf("Digite o valor da despesa R$: ");
              scanf("%d" , &des);
              financeiro(rec,des);
+             break;
              case 202:
              printf("Digite o valor da receita R$: ");
              scanf("%d" , &rec);
              financeiro(rec,des);
+             break;
              case 203:
              s = rec - des;
              printf("Saldo é igual a R$: %d " , s);
              financeiro(rec,des);
+             break;
              case 204:
              menu_principal();
+             break;
              default:
              financeiro(rec,des);
+             break;
         }
             
 }
+
+int rec;
+int des;
 int menu_principal(){
     int escolha;
     int sair;
     int estoque;
-    printf("Menu: \n\n 1. Controle estoque \n 2. Controle finaceiro \n 3. Controle vendas \n 4. Sair \n\n Selecione: ");
+    printf("Menu: \n\n 1. Controle estoque \n 2. Controle finaceiro \n 3. Controle vendas \n 4. Pagamento\n 5. Sair \n\n Selecione: ");
     scanf("%d" , &escolha);
     
     
     switch( escolha ){
         case 1 :
-        printf("--------------------------------------------------------------------------------------------------- \n");
+        printf("-------------------------------------------------------------------------- \n");
         printf("Controle de estoque \n");
         printf("     *Itens Disponíveis: \n \n");
         printf("   101 - Produto A -- 10 unidades; \n");
@@ -59,14 +68,15 @@ int menu_principal(){
             menu_principal();
         }else{
             printf("Programa encerrado!");
-            break;
+            
         }
-        
+        break;
         case 2:
         financeiro(rec,des);
+        break;
 
         case 3 :
-        printf("--------------------------------------------------------------------------------------------------- \n");
+        printf("--------------------------------------------------------------------------\n");
         printf("Vendas \n");
         printf("     *Itens Disponíveis: \n \n");
         printf("301 - Produto A -- R$22,00 \n");
@@ -78,14 +88,18 @@ int menu_principal(){
             menu_principal();
         }else{
             printf("Programa encerrado!");
-            break;
+            
         }
-       case 4 :
-        printf("--------------------------------------------------------------------------------------------------- \n");
-        printf("Programa encerrado!");
+        
+        case 4:
         break;
+        
+        case 5 :
+        printf("\n--------------------------------------------------------------------------\n");
+        printf("Programa encerrado!");
+        return 4;
         default:
-        printf("--------------------------------------------------------------------------------------------------- \n");
+        printf("\n--------------------------------------------------------------------------\n");
         printf("Opção Inválida \n");
         break;
     }
@@ -95,6 +109,5 @@ int menu_principal(){
 
 int main(){
     menu_principal();
-    financeiro(rec,des);
     return 0;
 }
