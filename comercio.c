@@ -1,3 +1,5 @@
+/*SÓ FALTA ARRUMAR O 1 E O 4*/
+
 #include <stdio.h>
 int menu_principal();
 void financeiro(int rec,int des);
