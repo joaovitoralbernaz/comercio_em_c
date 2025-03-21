@@ -1,8 +1,53 @@
-/*SÓ FALTA ARRUMAR O 1 E O 4*/
-
 #include <stdio.h>
+int controle_vendas();
 int menu_principal();
 void financeiro(int rec,int des);
+int controle_vendas(){
+    int a = 22;
+    int b = 40;
+    int c = 53;
+    int valor;
+    int quant;
+    int menu_principal();
+    int escolha_3;
+    printf("--------------------------------------------------------------------------\n");
+    printf("Vendas \n");
+    printf("     *Itens Disponíveis: \n \n");
+    printf("301 - Produto A -- R$22,00 \n");
+    printf("302 - Produto B -- R$40,00 \n");
+    printf("303 - Produto C -- R$53,00 \n");
+    printf("304 - voltar ao menu principal? \n\n");
+    printf("Selecione o código do o produto a ser vendido:  \n");
+    scanf("%d" , &escolha_3);
+    
+
+    switch(escolha_3){
+        case 301:
+            printf("Digite a quantidade que o cliente esta comprando: ");
+            scanf("%d" , &quant );
+            valor = a * quant;
+            printf("%d" , valor);
+            return 1;
+        case 302:
+            printf("Digite a quantidade que o cliente esta comprando: ");
+            scanf("%d" , &quant );
+            valor = b * quant;
+            printf("%d" , valor);
+            return 1;
+        case 303:
+            printf("Digite a quantidade que o cliente esta comprando: ");
+            scanf("%d" , &quant );
+            valor = c * quant;
+            printf("%d" , valor);
+            return 1;
+        case 304:
+            menu_principal();
+            break;
+        default: 
+            controle_vendas();
+            return 1;
+    }
+}
 
 void financeiro(int rec,int des){
     
@@ -50,7 +95,7 @@ int menu_principal(){
 int escolha;
 int sair;
 int estoque;
-printf("Menu: \n\n 1. Controle estoque \n 2. Controle finaceiro \n 3. Controle vendas \n 4. Pagamento\n 5. Sair \n\n Selecione: ");
+printf("Menu: \n\n 1. Controle estoque \n 2. Controle finaceiro \n 3. Controle vendas \n 4. Sair \n\n Selecione: ");
 scanf("%d" , &escolha);
 
 switch( escolha ){
@@ -77,25 +122,10 @@ switch( escolha ){
     break;
     
     case 3 :
-    printf("--------------------------------------------------------------------------\n");
-    printf("Vendas \n");
-    printf("     *Itens Disponíveis: \n \n");
-    printf("301 - Produto A -- R$22,00 \n");
-    printf("302 - Produto B -- R$40,00 \n");
-    printf("303 - Produto C -- R$53,00 \n \n");
-    printf("Voltar ao menu principal? \n");
-    scanf(" %c" , &sair);
-    
-    if( sair == 's'){
-        menu_principal();
-    }else{
-        printf("Programa encerrado!");
-    }
-    
-    case 4:
+    controle_vendas();
     break;
-        
-    case 5 :
+    
+    case 4 :
     printf("\n--------------------------------------------------------------------------\n");
     printf("Programa encerrado!");
     return 4;
