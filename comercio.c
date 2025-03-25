@@ -30,21 +30,21 @@ void controle_vendas() {
                 printf("Digite a quantidade: ");
                 scanf("%d", &quant);
                 valor = a * quant;
-                total += valor;
+                total = total + valor;
                 printf("Valor total da compra: R$ %d\n", valor);
                 break;
             case 302:
                 printf("Digite a quantidade: ");
                 scanf("%d", &quant);
                 valor = b * quant;
-                total += valor;
+                total = total + valor;
                 printf("Valor total da compra: R$ %d\n", valor);
                 break;
             case 303:
                 printf("Digite a quantidade: ");
                 scanf("%d", &quant);
                 valor = c * quant;
-                total += valor;
+                total = total + valor;
                 printf("Valor total da compra: R$ %d\n", valor);
                 break;
             case 304:
@@ -62,6 +62,7 @@ void controle_vendas() {
 }
 
 void pagamento(int total) {
+    float recebido, troco;
     int escolha_pagamento;
     float desconto = 0.0, valor_final;
 
@@ -80,20 +81,19 @@ void pagamento(int total) {
             desconto = 0.18;
         }
         valor_final = total * (1 - desconto);
-        float recebido, troco;
         printf("Total com desconto: R$ %.2f\n", valor_final);
         printf("Digite o valor recebido: R$ ");
         scanf("%f", &recebido);
         troco = recebido - valor_final;
         printf("Troco: R$ %.2f\n", troco);
-        rec += valor_final;
+        rec = rec + valor_final;
     } else if (escolha_pagamento == 2) {
         int status_cartao;
         do {
             printf("Pagamento na máquina realizado? (1 - Sim / 0 - Não): ");
             scanf("%d", &status_cartao);
         } while (status_cartao != 1);
-        rec += total;
+        rec = rec + total;
     } else {
         printf("Opção inválida. Tente novamente.\n");
         pagamento(total);
@@ -117,13 +117,13 @@ void financeiro() {
             case 201:
                 printf("Digite o valor da despesa: R$ ");
                 scanf("%d", &valor);
-                des += valor;
+                des = des + valor;
                 printf("Despesa registrada!\n");
                 break;
             case 202:
                 printf("Digite o valor da receita: R$ ");
                 scanf("%d", &valor);
-                rec += valor;
+                rec = rec + valor;
                 printf("Receita registrada!\n");
                 break;
             case 203:
