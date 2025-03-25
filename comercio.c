@@ -10,6 +10,7 @@ void financeiro();
 void controle_vendas();
 void pagamento(int total);
 
+//Faz as vendas
 void controle_vendas() {
     int escolha_3, quant, valor, total = 0;
     int a = 22, b = 40, c = 53;
@@ -54,6 +55,7 @@ void controle_vendas() {
                 continue;
         }
         
+        //Pergunta ao usuário se ele quer fazer outra compra ou não
         printf("\nDeseja fazer outra compra? (s/n): ");
         scanf(" %c", &continuar);
     } while (continuar == 's' || continuar == 'S');
@@ -61,6 +63,7 @@ void controle_vendas() {
     pagamento(total);
 }
 
+//Faz o pagamento
 void pagamento(int total) {
     float recebido, troco;
     int escolha_pagamento;
@@ -100,6 +103,7 @@ void pagamento(int total) {
     }
 }
 
+//Mostra e registra os valores na parte financeira
 void financeiro() {
     int escolha_2, valor;
 
@@ -137,6 +141,7 @@ void financeiro() {
     }
 }
 
+//Mostra o menu, onde tem as funções principais 
 void menu_principal() {
     int escolha;
 
@@ -150,7 +155,9 @@ void menu_principal() {
         printf("Escolha uma opção: ");
         scanf("%d", &escolha);
 
+
         switch (escolha) {
+            //Mostra todos os produtos disponíveis e a quantidade de cada um
             case 1:
                 printf("\nCONTROLE DE ESTOQUE\n");
                 printf("101 - Produto A -- 10 unidades\n");
