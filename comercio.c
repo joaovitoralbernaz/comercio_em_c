@@ -52,7 +52,7 @@ void controle_vendas() {
                 return;  // Retorna ao menu principal
             default:
                 printf("Opção inválida. Tente novamente.\n");
-                continue;
+                controle_vendas();
         }
         
         //Pergunta ao usuário se ele quer fazer outra compra ou não
