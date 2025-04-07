@@ -3,12 +3,26 @@
 // Variáveis globais para receitas e despesas
 int rec = 0;
 int des = 0;
+struct produtos{
+    char nome[n];
+    float preco;
+}
 
 // Declaração de funções
+
+void controle_estoque();
 void menu_principal();
 void financeiro();
 void controle_vendas();
 void pagamento(int total);
+
+void controle_estoque(){
+    struct produtos nome[15];
+    
+    for( int i = 0; i < n ; i++){
+        
+    }
+}
 
 //Faz as vendas
 void controle_vendas() {
@@ -159,10 +173,7 @@ void menu_principal() {
         switch (escolha) {
             //Mostra todos os produtos disponíveis e a quantidade de cada um
             case 1:
-                printf("\nCONTROLE DE ESTOQUE\n");
-                printf("101 - Produto A -- 10 unidades\n");
-                printf("102 - Produto B -- 23 unidades\n");
-                printf("103 - Produto C -- 31 unidades\n");
+                controle_estoque();
                 break;
             case 2:
                 financeiro();
