@@ -1,13 +1,13 @@
 #include <stdio.h>
 
-// Variáveis globais para receitas e despesas
+// Variáveis globais
 int rec = 0;
 int des = 0;
-struct produtos{
-    char nome[n];
-    float preco;
-}
 
+struct produtos{
+    char nome[15];
+    float preco;
+};
 // Declaração de funções
 
 void controle_estoque();
@@ -16,12 +16,23 @@ void financeiro();
 void controle_vendas();
 void pagamento(int total);
 
+
+
 void controle_estoque(){
-    struct produtos nome[15];
+    int n;
+    printf("Quantos produtos deseja adicionar ao estoque ? ");
+    scanf("%d" , &n);
+    struct produtos estoque[n];
     
-    for( int i = 0; i < n ; i++){
-        
+    for( int i = 0; i < n ; i++ ){
+        printf("Digite o %dº produto:\n " , (i + 1));
+        scanf(" %s" , &estoque[i].nome);
+        printf("Digite o preço do %d° produto:\n " , (i + 1));
+        scanf("%f" , &estoque[i].preco);
     }
+    
+    printf(" %s" , &estoque[1].nome);
+    printf("%f" , &estoque[1].preco);
 }
 
 //Faz as vendas
