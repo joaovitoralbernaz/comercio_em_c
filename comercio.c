@@ -1,94 +1,78 @@
 #include <stdio.h>
+#include <string.h>
+
+struct produtos {
+    char nome[15];
+    float preco;
+};
 
 // Variáveis globais
 int rec = 0;
 int des = 0;
+int n;
+struct produtos estoque[100];
+int quantidade_vendida[100] = {0}; // Quantidade vendida por produto
 
-struct produtos{
-    char nome[15];
-    float preco;
-};
 // Declaração de funções
-
 void controle_estoque();
 void menu_principal();
 void financeiro();
 void controle_vendas();
 void pagamento(int total);
+void relatorio_final();
 
+// Adiciona produtos ao estoque
+void controle_estoque() {
+    printf("Quantos produtos deseja adicionar ao estoque? ");
+    scanf("%d", &n);
 
-
-void controle_estoque(){
-    int n;
-    printf("Quantos produtos deseja adicionar ao estoque ? ");
-    scanf("%d" , &n);
-    struct produtos estoque[n];
-    
-    for( int i = 0; i < n ; i++ ){
-        printf("Digite o %dº produto:\n " , (i + 1));
-        scanf(" %s" , &estoque[i].nome);
-        printf("Digite o preço do %d° produto:\n " , (i + 1));
-        scanf("%f" , &estoque[i].preco);
+    for (int i = 0; i < n; i++) {
+        printf("Digite o %dº produto:\n", i + 1);
+        scanf(" %s", estoque[i].nome);
+        printf("Digite o preço do %dº produto:\n", i + 1);
+        scanf("%f", &estoque[i].preco);
     }
-    
-    printf(" %s" , &estoque[1].nome);
-    printf("%f" , &estoque[1].preco);
 }
 
-//Faz as vendas
+// Faz as vendas
 void controle_vendas() {
-    int escolha_3, quant, valor, total = 0;
-    int a = 22, b = 40, c = 53;
+    int escolha_3, quant, total = 0;
+    float valor;
     char continuar;
 
     do {
         printf("\n---------------------------------------------\n");
         printf("VENDAS\n");
-        printf("301 - Produto A -- R$22,00\n");
-        printf("302 - Produto B -- R$40,00\n");
-        printf("303 - Produto C -- R$53,00\n");
-        printf("304 - Voltar ao menu principal\n");
+
+        for (int i = 0; i < n; i++) {
+            printf("%d - %s -- R$ %.2f\n", 301 + i, estoque[i].nome, estoque[i].preco);
+        }
+        printf("300 - Voltar ao menu principal\n");
         printf("Escolha um código de produto: ");
         scanf("%d", &escolha_3);
 
-        switch (escolha_3) {
-            case 301:
-                printf("Digite a quantidade: ");
-                scanf("%d", &quant);
-                valor = a * quant;
-                total = total + valor;
-                printf("Valor total da compra: R$ %d\n", valor);
-                break;
-            case 302:
-                printf("Digite a quantidade: ");
-                scanf("%d", &quant);
-                valor = b * quant;
-                total = total + valor;
-                printf("Valor total da compra: R$ %d\n", valor);
-                break;
-            case 303:
-                printf("Digite a quantidade: ");
-                scanf("%d", &quant);
-                valor = c * quant;
-                total = total + valor;
-                printf("Valor total da compra: R$ %d\n", valor);
-                break;
-            case 304:
-                return;  // Retorna ao menu principal
-            default:
-                printf("Opção inválida. Tente novamente.\n");
-                controle_vendas();
+        if (escolha_3 >= 301 && escolha_3 < 301 + n) {
+            int index = escolha_3 - 301;
+            printf("Digite a quantidade: ");
+            scanf("%d", &quant);
+            valor = estoque[index].preco * quant;
+            total = total + valor;
+            quantidade_vendida[index] += quant;
+            printf("Valor total desta compra: R$ %.2f\n", valor);
+        } else if (escolha_3 == 300) {
+            return;
+        } else {
+            printf("Opção inválida. Tente novamente.\n");
         }
-        
-        //Pergunta ao usuário se ele quer fazer outra compra ou não
+
         printf("\nDeseja fazer outra compra? (s/n): ");
         scanf(" %c", &continuar);
     } while (continuar == 's' || continuar == 'S');
-    
+
     pagamento(total);
 }
 
-//Faz o pagamento
+// Faz o pagamento
 void pagamento(int total) {
     float recebido, troco;
     int escolha_pagamento;
@@ -128,7 +112,7 @@ void pagamento(int total) {
     }
 }
 
-//Mostra e registra os valores na parte financeira
+// Parte financeira
 void financeiro() {
     int escolha_2, valor;
 
@@ -159,14 +143,29 @@ void financeiro() {
                 printf("Saldo atual: R$ %d\n", rec - des);
                 break;
             case 204:
-                return;  // Retorna ao menu principal
+                return;
             default:
                 printf("Opção inválida. Tente novamente.\n");
         }
     }
 }
 
-//Mostra o menu, onde tem as funções principais 
+// Relatório final
+void relatorio_final() {
+    printf("\n---------------------------------------------\n");
+    printf("RELATÓRIO FINAL DO DIA\n");
+    printf("Produtos vendidos:\n");
+    for (int i = 0; i < n; i++) {
+        if (quantidade_vendida[i] > 0) {
+            printf("%s - Quantidade: %d - Total: R$ %.2f\n", estoque[i].nome, quantidade_vendida[i], estoque[i].preco * quantidade_vendida[i]);
+        }
+    }
+    printf("Total de receitas: R$ %d\n", rec);
+    printf("Total de despesas: R$ %d\n", des);
+    printf("Saldo final: R$ %d\n", rec - des);
+}
+
+// Menu principal
 void menu_principal() {
     int escolha;
 
@@ -180,9 +179,7 @@ void menu_principal() {
         printf("Escolha uma opção: ");
         scanf("%d", &escolha);
 
-
         switch (escolha) {
-            //Mostra todos os produtos disponíveis e a quantidade de cada um
             case 1:
                 controle_estoque();
                 break;
@@ -190,9 +187,14 @@ void menu_principal() {
                 financeiro();
                 break;
             case 3:
-                controle_vendas();
+                if (n == 0) {
+                    printf("Nenhum produto cadastrado no estoque.\n");
+                } else {
+                    controle_vendas();
+                }
                 break;
             case 4:
+                relatorio_final();
                 printf("\nPrograma encerrado!\n");
                 return;
             default:
